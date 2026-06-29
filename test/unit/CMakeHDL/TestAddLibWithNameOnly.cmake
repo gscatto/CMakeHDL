@@ -15,7 +15,7 @@ endmacro()
 
 macro(CMakeHDL_add_build_library_command)
     set_property(GLOBAL PROPERTY CMakeHDL_add_build_library_command 1)
-    if(NOT "${ARGN}" STREQUAL "hello;DEPENDS;OUTPUT_FILE_VARIABLE;output_file;SOURCES;WORKING_DIRECTORY;/cmake/binary/dir/CMakeHDL/hello.dir")
+    if(NOT "${ARGN}" STREQUAL "hello;VHDL_RELAXED_RULES;FALSE;DEPENDS;OUTPUT_FILE_VARIABLE;output_file;SOURCES;WORKING_DIRECTORY;/cmake/binary/dir/CMakeHDL/hello.dir")
         message(FATAL_ERROR "unexpected ARGN, got: ${ARGN}")
     endif()
     set(output_file /cmake/binary/dir/CMakeHDL/hello.dir/.touch)

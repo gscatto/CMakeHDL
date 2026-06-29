@@ -5,7 +5,7 @@ endmacro()
 
 macro(CMakeHDL_search_sources output_var)
     set_property(GLOBAL PROPERTY CMakeHDL_search_sources 1)
-    if(NOT "${ARGN}" STREQUAL "NAME;world;SOURCES;hello.vhd;world.vhd")
+    if(NOT "${ARGN}" STREQUAL "VHDL_RELAXED_RULES;NAME;world;SOURCES;hello.vhd;world.vhd")
         message(FATAL_ERROR "unexpected ARGN, got: ${ARGN}")
     endif()
     set("${output_var}" "/sources/hello.vhd;/sources/world.vhd")
@@ -13,7 +13,7 @@ endmacro()
 
 macro(CMakeHDL_search_file_deps output_var)
     set_property(GLOBAL PROPERTY CMakeHDL_search_file_deps 1)
-    if(NOT "${ARGN}" STREQUAL "NAME;world;SOURCES;hello.vhd;world.vhd")
+    if(NOT "${ARGN}" STREQUAL "VHDL_RELAXED_RULES;NAME;world;SOURCES;hello.vhd;world.vhd")
         message(FATAL_ERROR "unexpected ARGN, got: ${ARGN}")
     endif()
     set("${output_var}" "/file_deps/goodbye.vhd")
@@ -21,7 +21,7 @@ endmacro()
 
 macro(CMakeHDL_add_build_library_command)
     set_property(GLOBAL PROPERTY CMakeHDL_add_build_library_command 1)
-    if(NOT "${ARGN}" STREQUAL "world;DEPENDS;/file_deps/goodbye.vhd;OUTPUT_FILE_VARIABLE;output_file;SOURCES;/sources/hello.vhd;/sources/world.vhd;WORKING_DIRECTORY;/cmake/binary/dir/CMakeHDL/world.dir")
+    if(NOT "${ARGN}" STREQUAL "world;VHDL_RELAXED_RULES;TRUE;DEPENDS;/file_deps/goodbye.vhd;OUTPUT_FILE_VARIABLE;output_file;SOURCES;/sources/hello.vhd;/sources/world.vhd;WORKING_DIRECTORY;/cmake/binary/dir/CMakeHDL/world.dir")
         message(FATAL_ERROR "unexpected ARGN, got: ${ARGN}")
     endif()
     set(output_file /cmake/binary/dir/CMakeHDL/world.dir/.touch)
@@ -38,7 +38,11 @@ macro(CMakeHDL_set_target_properties)
 endmacro()
 
 set(CMAKE_BINARY_DIR "/cmake/binary/dir")
-CMakeHDL_add_library(NAME world SOURCES hello.vhd world.vhd)
+CMakeHDL_add_library(
+    VHDL_RELAXED_RULES
+    NAME world
+    SOURCES hello.vhd world.vhd
+)
 
 get_property(called GLOBAL PROPERTY CMakeHDL_search_sources SET)
 if(NOT called)

@@ -77,13 +77,15 @@ Creates a new HDL library.
 CMakeHDL_add_library(
     NAME <name>
     [SOURCES <source1> <source2>]
+    [VHDL_RELAXED_RULES]
 )
 ```
 
 ##### Parameters
 
 - `NAME` (required) - Name of the library
-- `SOURCES` (optional) - Sources of the library
+- `SOURCES` (optional) - Sources of the librar
+- `VHDL_RELAXED_RULES` (optional) - Enable "relaxed rules" mode
 
 ##### Examples
 
@@ -108,6 +110,7 @@ CMakeHDL_add_simulation(
     [VHDL_TOP_CONFIGURATION <vhdl-top-config>]
     [VHDL_TOP_ENTITY <vhdl-top-entity>]
     [VHDL_TOP_ARCHITECTURE <vhdl-top-arch>]
+    [VHDL_RELAXED_RULES]
 )
 ```
 
@@ -118,6 +121,7 @@ CMakeHDL_add_simulation(
 - `VHDL_TOP_CONFIGURATION` (optional) - Name of the VHDL configuration
 - `VHDL_TOP_ENTITY` (optional) - Name of the VHDL entity
 - `VHDL_TOP_ARCHITECTURE` (optional) - Name of the VHDL architecture
+- `VHDL_RELAXED_RULES` (optional) - Enable "relaxed rules" mode
 
 ##### Examples
 

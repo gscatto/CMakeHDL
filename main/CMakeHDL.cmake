@@ -1,5 +1,5 @@
 function(CMakeHDL_add_library)
-    cmake_parse_arguments(args "" "NAME" "" ${ARGN})
+    cmake_parse_arguments(args "VHDL_RELAXED_RULES" "NAME" "" ${ARGN})
     if(NOT args_NAME)
         message(FATAL_ERROR "CMakeHDL_add_library called without NAME parameter")
     endif()
@@ -8,6 +8,7 @@ function(CMakeHDL_add_library)
     CMakeHDL_search_sources(sources ${ARGN})
     CMakeHDL_search_file_deps(file_deps ${ARGN})
     CMakeHDL_add_build_library_command(${args_NAME}
+        VHDL_RELAXED_RULES "${args_VHDL_RELAXED_RULES}"
         DEPENDS ${file_deps}
         OUTPUT_FILE_VARIABLE output_file
         SOURCES ${sources}
@@ -25,7 +26,7 @@ function(CMakeHDL_add_library)
 endfunction()
 
 function(CMakeHDL_add_simulation)
-    cmake_parse_arguments(args "" "NAME;VHDL_TOP_CONFIGURATION;VHDL_TOP_ENTITY;VHDL_TOP_ARCHITECTURE;WORK_LIBRARY" "" ${ARGN})
+    cmake_parse_arguments(args "VHDL_RELAXED_RULES" "NAME;VHDL_TOP_CONFIGURATION;VHDL_TOP_ENTITY;VHDL_TOP_ARCHITECTURE;WORK_LIBRARY" "" ${ARGN})
     if(NOT args_NAME)
         message(FATAL_ERROR "CMakeHDL_add_simulation called without NAME parameter")
     endif()
@@ -33,6 +34,7 @@ function(CMakeHDL_add_simulation)
     CMakeHDL_file(MAKE_DIRECTORY "${working_directory}")
     CMakeHDL_search_file_deps(file_deps ${ARGN})
     CMakeHDL_add_build_simulation_command(${args_NAME}
+        VHDL_RELAXED_RULES "${args_VHDL_RELAXED_RULES}"
         DEPENDS ${file_deps}
         OUTPUT_FILE_VARIABLE build_output_file
         VHDL_TOP_ARCHITECTURE "${args_VHDL_TOP_ARCHITECTURE}"

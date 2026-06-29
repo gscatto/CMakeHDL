@@ -5,3 +5,4 @@ add_test(NAME CMakeHDLGhdlLlvm.TestVhdlStandard2008 COMMAND "${CMAKE_COMMAND}" "
 add_test(NAME CMakeHDLGhdlLlvm.TestAddBuildLibraryCommand COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestAddBuildLibraryCommand.cmake")
 add_test(NAME CMakeHDLGhdlLlvm.TestAddBuildSimulationCommand COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestAddBuildSimulationCommand.cmake")
 add_test(NAME CMakeHDLGhdlLlvm.TestAddRunSimulationTarget COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestAddRunSimulationTarget.cmake")
+add_test(NAME CMakeHDLGhdlLlvm.TestVhdlRelaxedRules COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestVhdlRelaxedRules.cmake")
