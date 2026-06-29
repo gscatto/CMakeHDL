@@ -60,9 +60,10 @@ This creates two CMake targets:
 
 ### Properties
 
-| Name                   | Default | Description            |
-|------------------------|---------|------------------------|
-| CMakeHDL_VHDL_STANDARD | 1993    | VHDL language standard |
+| Name                   | Default | Values      | Description            |
+|------------------------|---------|-------------|------------------------|
+| CMakeHDL_PROGRAM_NAME  | -       | `ghdl-llvm` | HDL program            |
+| CMakeHDL_VHDL_STANDARD | 1993    | 1993, 2008  | VHDL language standard |
 
 ### Functions
 
