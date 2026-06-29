@@ -1,0 +1,2 @@
+add_subdirectory(CMakeHDL)
+add_subdirectory(CMakeHDLGhdlLlvm)

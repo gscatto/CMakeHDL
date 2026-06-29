@@ -1,0 +1,140 @@
+# CMakeHDL
+
+CMakeHDL integrates HDL tools like GHDL and Vivado into CMake.
+
+[Requirements](#requirements) | [Installation](#installation) | [Quick Start](#requirements) | [API Reference](#api-reference) | [Contributing](#contributing)
+
+## Requirements
+
+- CMake 3.31.6 (might work with older versions)
+- GHDL 5.0.1, LLVM 19.1.7 (might work with older versions)
+
+## Installation
+
+Add CMakeHDL to your CMake project using `FetchContent`:
+
+```cmake
+include(FetchContent)
+FetchContent_Declare(CMakeHDL
+    GIT_REPOSITORY "https://github.com/gscatto/CMakeHDL"
+    GIT_TAG "..."
+)
+FetchContent_MakeAvailable(CMakeHDL)
+get_property(CMakeHDL_CMAKE_MODULE_PATH
+    TARGET CMakeHDL
+    PROPERTY CMAKE_MODULE_PATH
+)
+list(APPEND CMAKE_MODULE_PATH "${CMakeHDL_CMAKE_MODULE_PATH}")
+include(CMakeHDL)
+```
+
+## Quick Start
+
+Create a Python virtual environment, install packages from `requirements.txt` and use the Python interpreter in your build.
+
+```cmake
+# Add a library containing entity and testbench
+CMakeHDL_add_library(
+    NAME and_gate_tb
+    SOURCES
+        and_gate.vhd
+        and_gate_tb.vhd
+)
+
+# Add a testbench simulation
+CMakeHDL_add_simulation(
+    NAME and_gate_tb_sim
+    WORK_LIBRARY and_gate_tb
+    VHDL_TOP_ENTITY and_gate_tb
+)
+```
+
+This adds two CMake targets `and_gate_tb` and `and_gate_tb_sim`: the former builds the library and the latter runs the testbench.
+
+## API Reference
+
+Properties: [CMakeHDL_VHDL_STANDARD](#CMakeHDL_CMakeHDL_VHDL_STANDARD)
+
+Functions: [CMakeHDL_add_library()](#CMakeHDL_add_library) | [CMakeHDL_add_simulation()](#CMakeHDL_add_simulation)
+
+### CMakeHDL_VHDL_STANDARD
+
+Defines the VHDL standard to use (defaults to 2003).
+
+#### Examples
+
+```cmake
+# Configure CMakeHDL to use VHDL 2008
+cmake -DCMakeHDL_VHDL_STANDARD=2008
+```
+
+### CMakeHDL_add_library()
+
+Creates a new HDL library.
+
+```cmake
+CMakeHDL_add_library(
+    NAME <name>
+    [SOURCES <source1> <source2>]
+)
+```
+
+#### Parameters
+
+- `NAME` (required) - Name of the library
+- `SOURCES` (optional) - Sources of the library
+
+#### Examples
+
+```cmake
+# Create a library named "and_gate_tb"
+CMakeHDL_add_library(
+    NAME and_gate_tb
+    SOURCES
+        and_gate.vhd
+        and_gate_tb.vhd
+)
+```
+
+### CMakeHDL_add_simulation()
+
+Creates a new HDL simulation.
+
+```cmake
+CMakeHDL_add_simulation(
+    NAME <name>
+    [WORK_LIBRARY <work-library>]
+    [VHDL_TOP_CONFIGURATION <vhdl-top-config>]
+    [VHDL_TOP_ENTITY <vhdl-top-entity>]
+    [VHDL_TOP_ARCHITECTURE <vhdl-top-arch>]
+)
+```
+
+#### Parameters
+
+- `NAME` (required) - Name of the simulation
+- `WORK_LIBRARY` (optional) - Name of the work library
+- `VHDL_TOP_CONFIGURATION` (optional) - Name of the VHDL configuration
+- `VHDL_TOP_ENTITY` (optional) - Name of the VHDL entity
+- `VHDL_TOP_ARCHITECTURE` (optional) - Name of the VHDL architecture
+
+#### Examples
+
+```cmake
+# Specify work library and VHDL top entity
+CMakeHDL_add_simulation(
+    NAME and_gate_tb_sim
+    WORK_LIBRARY and_gate_tb
+    VHDL_TOP_ENTITY and_gate_tb
+)
+```
+
+## Contributing
+
+Contributions are welcome! Please submit issues and pull requests on [GitHub](https://github.com/gscatto/CMakeHDL).
+
+## License
+
+MIT License — See `LICENSE` file for details.
+
+Copyright © 2026 Giulio Scattolin

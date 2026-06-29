@@ -1,0 +1,3 @@
+if(CMakeHDL_PROGRAM_NAME)
+    add_test(NAME CMakeHDL.TestSimpleVHDLTestbench COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR};${CMAKE_CURRENT_SOURCE_DIR}" "-DCMakeHDL_PROGRAM_NAME=${CMakeHDL_PROGRAM_NAME}" "-Dsource_dir=${CMAKE_CURRENT_SOURCE_DIR}/TestSimpleVHDLTestbench" "-Dbinary_dir=${CMAKE_CURRENT_BINARY_DIR}/TestSimpleVHDLTestbench" "-Dproject_dir=${PROJECT_SOURCE_DIR}" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestSimpleVHDLTestbench.cmake")
+endif()

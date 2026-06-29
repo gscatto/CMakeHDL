@@ -1,0 +1,61 @@
+include(CMakeHDL)
+
+macro(CMakeHDL_file)
+endmacro()
+
+macro(CMakeHDL_search_sources output_var)
+    set_property(GLOBAL PROPERTY CMakeHDL_search_sources 1)
+    if(NOT "${ARGN}" STREQUAL "NAME;world;SOURCES;hello.vhd;world.vhd")
+        message(FATAL_ERROR "unexpected ARGN, got: ${ARGN}")
+    endif()
+    set("${output_var}" "/sources/hello.vhd;/sources/world.vhd")
+endmacro()
+
+macro(CMakeHDL_search_file_deps output_var)
+    set_property(GLOBAL PROPERTY CMakeHDL_search_file_deps 1)
+    if(NOT "${ARGN}" STREQUAL "NAME;world;SOURCES;hello.vhd;world.vhd")
+        message(FATAL_ERROR "unexpected ARGN, got: ${ARGN}")
+    endif()
+    set("${output_var}" "/file_deps/goodbye.vhd")
+endmacro()
+
+macro(CMakeHDL_add_build_library_command)
+    set_property(GLOBAL PROPERTY CMakeHDL_add_build_library_command 1)
+    if(NOT "${ARGN}" STREQUAL "world;DEPENDS;/file_deps/goodbye.vhd;OUTPUT_FILE_VARIABLE;output_file;SOURCES;/sources/hello.vhd;/sources/world.vhd;WORKING_DIRECTORY;/cmake/binary/dir/CMakeHDL/world.dir")
+        message(FATAL_ERROR "unexpected ARGN, got: ${ARGN}")
+    endif()
+    set(output_file /cmake/binary/dir/CMakeHDL/world.dir/.touch)
+endmacro()
+
+macro(CMakeHDL_add_custom_target)
+endmacro()
+
+macro(CMakeHDL_set_target_properties)
+    set_property(GLOBAL PROPERTY CMakeHDL_set_target_properties TRUE)
+    if(NOT "${ARGN}" STREQUAL "world;PROPERTIES;CMakeHDL_LIBRARY;TRUE;OUTPUT_FILE;/cmake/binary/dir/CMakeHDL/world.dir/.touch;SOURCES;/sources/hello.vhd\;/sources/world.vhd;WORKING_DIRECTORY;/cmake/binary/dir/CMakeHDL/world.dir")
+        message(FATAL_ERROR "unexpected ARGN, got: ${ARGN}")
+    endif()
+endmacro()
+
+set(CMAKE_BINARY_DIR "/cmake/binary/dir")
+CMakeHDL_add_library(NAME world SOURCES hello.vhd world.vhd)
+
+get_property(called GLOBAL PROPERTY CMakeHDL_search_sources SET)
+if(NOT called)
+    message(FATAL_ERROR "CMakeHDL_search_sources was not called")
+endif()
+
+get_property(called GLOBAL PROPERTY CMakeHDL_search_file_deps SET)
+if(NOT called)
+    message(FATAL_ERROR "CMakeHDL_search_file_deps was not called")
+endif()
+
+get_property(called GLOBAL PROPERTY CMakeHDL_add_build_library_command SET)
+if(NOT called)
+    message(FATAL_ERROR "CMakeHDL_add_build_library_command was not called")
+endif()
+
+get_property(called GLOBAL PROPERTY CMakeHDL_set_target_properties SET)
+if(NOT called)
+    message(FATAL_ERROR "CMakeHDL_set_target_properties was not called")
+endif()

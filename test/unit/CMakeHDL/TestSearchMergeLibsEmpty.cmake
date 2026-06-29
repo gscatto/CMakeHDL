@@ -1,0 +1,6 @@
+include(CMakeHDL)
+set(output_var "non-empty")
+CMakeHDL_search_merge_libraries("" output_var)
+if(NOT "${output_var}" STREQUAL "")
+    message(FATAL_ERROR "unexpected output_var, got: \"${output_var}\"")
+endif()

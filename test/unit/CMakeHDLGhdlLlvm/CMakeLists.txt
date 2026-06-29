@@ -1,0 +1,7 @@
+add_test(NAME CMakeHDLGhdlLlvm.TestVhdlStandardUnset COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestVhdlStandardUnset.cmake")
+set_property(TEST CMakeHDLGhdlLlvm.TestVhdlStandardUnset PROPERTY PASS_REGULAR_EXPRESSION "CMakeHDL_VHDL_STANDARD should be one of the following values: 1993, 2008")
+add_test(NAME CMakeHDLGhdlLlvm.TestVhdlStandard1993 COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestVhdlStandard1993.cmake")
+add_test(NAME CMakeHDLGhdlLlvm.TestVhdlStandard2008 COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestVhdlStandard2008.cmake")
+add_test(NAME CMakeHDLGhdlLlvm.TestAddBuildLibraryCommand COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestAddBuildLibraryCommand.cmake")
+add_test(NAME CMakeHDLGhdlLlvm.TestAddBuildSimulationCommand COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestAddBuildSimulationCommand.cmake")
+add_test(NAME CMakeHDLGhdlLlvm.TestAddRunSimulationTarget COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestAddRunSimulationTarget.cmake")

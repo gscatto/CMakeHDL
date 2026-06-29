@@ -1,0 +1,5 @@
+set(CMakeHDL_VHDL_STANDARD 2008)
+include(CMakeHDLGhdlLlvm)
+if(NOT CMakeHDLGhdlLlvm_VHDL_STANDARD_ARG STREQUAL "--std=08")
+    message(FATAL_ERROR "CMakeHDLGhdlLlvm_VHDL_STANDARD_ARG should be \"--std=08\", got \"${CMakeHDLGhdlLlvm_VHDL_STANDARD_ARG}\"")
+endif()
