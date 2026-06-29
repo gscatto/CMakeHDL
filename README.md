@@ -17,7 +17,7 @@ Add CMakeHDL to your CMake project using `FetchContent`:
 include(FetchContent)
 FetchContent_Declare(CMakeHDL
     GIT_REPOSITORY "https://github.com/gscatto/CMakeHDL"
-    GIT_TAG "..."
+    GIT_TAG "5a5705c977aca1ab800f4ec7476ff8a2bce96ab8"
 )
 FetchContent_MakeAvailable(CMakeHDL)
 get_property(CMakeHDL_CMAKE_MODULE_PATH
