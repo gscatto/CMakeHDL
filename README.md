@@ -1,6 +1,6 @@
 # CMakeHDL
 
-CMakeHDL integrates HDL tools like GHDL and Vivado into CMake.
+CMakeHDL streamlines FPGA and HDL development by integrating industry tools (e.g., GHDL, Vivado) into CMake with a consistent, unified API. This eliminates tool-specific build configurations and lets you focus on your hardware designs.
 
 [Requirements](#requirements) | [Installation](#installation) | [Quick Start](#requirements) | [API Reference](#api-reference) | [Contributing](#contributing)
 
@@ -30,7 +30,7 @@ include(CMakeHDL)
 
 ## Quick Start
 
-Create a Python virtual environment, install packages from `requirements.txt` and use the Python interpreter in your build.
+Create a VHDL library containing entity and supporting testbench, then add a simulation that runs the testbench.
 
 ```cmake
 # Add a library containing entity and testbench
@@ -49,26 +49,26 @@ CMakeHDL_add_simulation(
 )
 ```
 
-This adds two CMake targets `and_gate_tb` and `and_gate_tb_sim`: the former builds the library and the latter runs the testbench.
+This creates two CMake targets:
+
+- `and_gate_tb` compiles the VHDL sources into a library
+- `and_gate_tb_sim` runs the testbench in a simulation
 
 ## API Reference
 
-Properties: [CMakeHDL_VHDL_STANDARD](#CMakeHDL_CMakeHDL_VHDL_STANDARD)
+[Properties](#properties) | [Functions](#functions)
 
-Functions: [CMakeHDL_add_library()](#CMakeHDL_add_library) | [CMakeHDL_add_simulation()](#CMakeHDL_add_simulation)
+### Properties
 
-### CMakeHDL_VHDL_STANDARD
+| Name                   | Default | Description            |
+|------------------------|---------|------------------------|
+| CMakeHDL_VHDL_STANDARD | 1993    | VHDL language standard |
 
-Defines the VHDL standard to use (defaults to 2003).
+### Functions
 
-#### Examples
+[CMakeHDL_add_library()](#CMakeHDL_add_library) | [CMakeHDL_add_simulation()](#CMakeHDL_add_simulation)
 
-```cmake
-# Configure CMakeHDL to use VHDL 2008
-cmake -DCMakeHDL_VHDL_STANDARD=2008
-```
-
-### CMakeHDL_add_library()
+#### CMakeHDL_add_library()
 
 Creates a new HDL library.
 
@@ -79,12 +79,12 @@ CMakeHDL_add_library(
 )
 ```
 
-#### Parameters
+##### Parameters
 
 - `NAME` (required) - Name of the library
 - `SOURCES` (optional) - Sources of the library
 
-#### Examples
+##### Examples
 
 ```cmake
 # Create a library named "and_gate_tb"
@@ -96,7 +96,7 @@ CMakeHDL_add_library(
 )
 ```
 
-### CMakeHDL_add_simulation()
+#### CMakeHDL_add_simulation()
 
 Creates a new HDL simulation.
 
@@ -110,7 +110,7 @@ CMakeHDL_add_simulation(
 )
 ```
 
-#### Parameters
+##### Parameters
 
 - `NAME` (required) - Name of the simulation
 - `WORK_LIBRARY` (optional) - Name of the work library
@@ -118,7 +118,7 @@ CMakeHDL_add_simulation(
 - `VHDL_TOP_ENTITY` (optional) - Name of the VHDL entity
 - `VHDL_TOP_ARCHITECTURE` (optional) - Name of the VHDL architecture
 
-#### Examples
+##### Examples
 
 ```cmake
 # Specify work library and VHDL top entity
