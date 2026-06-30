@@ -1,0 +1,1 @@
+add_test(NAME CMakeHDL/unit/CMakeHDL/add_simulation/TestUsesTerminal COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestUsesTerminal.cmake")

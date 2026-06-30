@@ -26,7 +26,7 @@ function(CMakeHDL_add_library)
 endfunction()
 
 function(CMakeHDL_add_simulation)
-    cmake_parse_arguments(args "VHDL_RELAXED_RULES" "NAME;VHDL_TOP_CONFIGURATION;VHDL_TOP_ENTITY;VHDL_TOP_ARCHITECTURE;WORK_LIBRARY" "" ${ARGN})
+    cmake_parse_arguments(args "USES_TERMINAL;VHDL_RELAXED_RULES" "NAME;VHDL_TOP_CONFIGURATION;VHDL_TOP_ENTITY;VHDL_TOP_ARCHITECTURE;WORK_LIBRARY" "" ${ARGN})
     if(NOT args_NAME)
         message(FATAL_ERROR "CMakeHDL_add_simulation called without NAME parameter")
     endif()
@@ -44,6 +44,7 @@ function(CMakeHDL_add_simulation)
         WORKING_DIRECTORY "${working_directory}"
     )
     CMakeHDL_add_run_simulation_target("${args_NAME}"
+        USES_TERMINAL "${args_USES_TERMINAL}"
         BUILD_SIMULATION_TARGET "${build_target}"
         DEPENDS "${build_output_file}"
         VHDL_TOP_ARCHITECTURE "${args_VHDL_TOP_ARCHITECTURE}"

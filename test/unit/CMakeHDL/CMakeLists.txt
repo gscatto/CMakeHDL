@@ -1,3 +1,5 @@
+add_subdirectory(add_simulation)
+
 # Test CMakeHDL_search_merge_libraries()
 add_test(NAME CMakeHDL.TestSearchMergeLibsEmpty COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestSearchMergeLibsEmpty.cmake")
 add_test(NAME CMakeHDL.TestSearchMergeLibsSingle COMMAND "${CMAKE_COMMAND}" "-DCMAKE_MODULE_PATH=${PROJECT_SOURCE_DIR}/main" -P "${CMAKE_CURRENT_SOURCE_DIR}/TestSearchMergeLibsSingle.cmake")

@@ -52,7 +52,7 @@ function(CMakeHDL_add_build_simulation_command name)
 endfunction()
 
 function(CMakeHDL_add_run_simulation_target name)
-    cmake_parse_arguments(args "" "BUILD_SIMULATION_TARGET;VHDL_TOP_ARCHITECTURE;VHDL_TOP_CONFIGURATION;VHDL_TOP_ENTITY;WORK_LIBRARY;WORKING_DIRECTORY" "DEPENDS" ${ARGN})
+    cmake_parse_arguments(args "" "BUILD_SIMULATION_TARGET;VHDL_TOP_ARCHITECTURE;VHDL_TOP_CONFIGURATION;VHDL_TOP_ENTITY;WORK_LIBRARY;WORKING_DIRECTORY;USES_TERMINAL" "DEPENDS" ${ARGN})
     set(elab_unit ${args_VHDL_TOP_CONFIGURATION} ${args_VHDL_TOP_ENTITY} ${args_VHDL_TOP_ARCHITECTURE})
     set(elab_args "")
     list(APPEND elab_args "${CMakeHDLGhdlLlvm_VHDL_STANDARD_ARG}")
@@ -61,7 +61,12 @@ function(CMakeHDL_add_run_simulation_target name)
         CMakeHDL_get_target_property(workdir "${args_WORK_LIBRARY}" WORKING_DIRECTORY)
         list(APPEND elab_args "--workdir=${workdir}")
     endif()
+    set(options "")
+    if(args_USES_TERMINAL)
+        list(APPEND options USES_TERMINAL)
+    endif()
     CMakeHDL_add_custom_target("${name}"
+        ${options}
         COMMAND "${CMakeHDLGhdlLlvm_EXECUTABLE}" -r ${elab_args} ${elab_unit}
         WORKING_DIRECTORY "${args_WORKING_DIRECTORY}"
         COMMENT "Running HDL simulation ${name}..."

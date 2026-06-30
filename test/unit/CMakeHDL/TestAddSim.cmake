@@ -27,7 +27,7 @@ macro(CMakeHDL_search_file_deps output_var)
 endmacro()
 
 macro(CMakeHDL_add_run_simulation_target)
-    if(NOT "${ARGN}" STREQUAL "hello;BUILD_SIMULATION_TARGET;;DEPENDS;;VHDL_TOP_ARCHITECTURE;vhdl_top_arch;VHDL_TOP_CONFIGURATION;vhdl_top_config;VHDL_TOP_ENTITY;vhdl_top_entity;WORK_LIBRARY;worklib;WORKING_DIRECTORY;/build/CMakeHDL/hello.dir")
+    if(NOT "${ARGN}" STREQUAL "hello;USES_TERMINAL;FALSE;BUILD_SIMULATION_TARGET;;DEPENDS;;VHDL_TOP_ARCHITECTURE;vhdl_top_arch;VHDL_TOP_CONFIGURATION;vhdl_top_config;VHDL_TOP_ENTITY;vhdl_top_entity;WORK_LIBRARY;worklib;WORKING_DIRECTORY;/build/CMakeHDL/hello.dir")
         message(FATAL_ERROR "unexpected ARGN, got: ${ARGN}")
     endif()
 endmacro()
